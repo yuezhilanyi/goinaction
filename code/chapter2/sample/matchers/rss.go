@@ -33,7 +33,7 @@ type (
 		Link 		string 		`xml:"link"`
 	}
 
-	// chanel defines the fields associated with the channel tag 
+	// channel defines the fields associated with the channel tag 
 	// in the rss document. 
 	channel struct {
 		XMLName 		xml.Name	`xml:"channel"`
@@ -53,7 +53,7 @@ type (
 	// rssDocument defines the fields associated with the rss document 
 	rssDocument struct {
 		XMLName	xml.Name	`xml:"rss"`
-		Chanel 	chanel 		`xml:"channel"`
+		Channel channel 	`xml:"channel"`
 	}
 )
 
@@ -70,7 +70,7 @@ func init() {
 func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Result, error) {
 	var results []*search.Result 
 	
-	log.Println("Search Feed Type[%s] Site[%s] For Uri[%s]\n", feed.Type, feed.Name, feed.URI)
+	log.Printf("Search Feed Type[%s] Site[%s] For Uri[%s]\n", feed.Type, feed.Name, feed.URI)
 
 	// Retrieve the data to search. 
 	document, err := m.retrieve(feed)
@@ -94,7 +94,7 @@ func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Resu
 		}
 
 		// Check the description for the search term. 
-		matched, err = regexp.MatchString(searchTerm, channelItem.Desceiption)
+		matched, err = regexp.MatchString(searchTerm, channelItem.Description)
 		if err != nil {
 			return nil, err 
 		}
@@ -106,9 +106,9 @@ func (m rssMatcher) Search(feed *search.Feed, searchTerm string) ([]*search.Resu
 				Content: 	channelItem.Description, 
 			})
 		}
-
-		return results, nil 
 	}
+
+	return results, nil 
 }
 
 // retrieve performs a HTTP Get requests for the rss feed and decodes 

@@ -6,7 +6,7 @@ import (
 )
 
 // A map of registered matchers for searching. 
-var matches = make(map[string]Matcher)
+var matchers = make(map[string]Matcher)
 
 // Run performs the search logic. 
 func Run(searchTerm string) {
@@ -57,7 +57,7 @@ func Run(searchTerm string) {
 }
 
 // Register is called to register a matcher for use by the program. 
-func Register(feedType string, matcher Mathcer) {
+func Register(feedType string, matcher Matcher) {
 	if _, exists := matchers[feedType]; exists {
 		log.Fatalln(feedType, "Matcher already registered")
 	}
