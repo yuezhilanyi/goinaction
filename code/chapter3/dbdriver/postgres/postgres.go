@@ -1,4 +1,4 @@
-package postgres 
+package postgres
 
 import (
 	"database/sql"
@@ -6,7 +6,7 @@ import (
 	"errors"
 )
 
-// PostgresDriver provides our implementation for the 
+// PostgresDriver provides our implementation for the
 // sql package.
 type PostgresDriver struct{}
 
