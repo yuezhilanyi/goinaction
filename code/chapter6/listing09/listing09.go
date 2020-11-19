@@ -1,5 +1,5 @@
 // This sample program demonstrates how to create race
-// conditions in our programs. We don't wangt to do this.
+// conditions in our programs. We don't want to do this.
 package main
 
 import (
@@ -12,7 +12,7 @@ var (
 	// counter is a variable incremented by all goroutines.
 	counter int
 
-	// wg is a used to wait for the program to finish.
+	// wg is used to wait for the program to finish.
 	wg sync.WaitGroup
 )
 
